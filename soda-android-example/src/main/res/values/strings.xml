@@ -12,7 +12,10 @@
   -->
 
 <resources>
-    <string name="app_name">Socrata Example</string>
+    <string name="app_name">Detroit Data</string>
     <string name="magnitude">Magnitude: %1$s</string>
     <string name="depth">Depth: %1$s</string>
+    <string name="permit_number">Permit Number: %1$s</string>
+    <string name="site_address">Address: %1$s</string>
+    <string name="description">Description: %1$s</string>
 </resources>
