@@ -15,22 +15,21 @@ package com.socrata.android.example.activities;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+
 import com.socrata.android.client.Consumer;
 import com.socrata.android.example.R;
-import com.socrata.android.example.model.Earthquake;
-import com.socrata.android.example.views.EarthquakeView;
+import com.socrata.android.example.model.BuildingPermit;
+import com.socrata.android.example.views.BuildingPermitView;
 import com.socrata.android.soql.Query;
-import com.socrata.android.soql.clauses.OrderDirection;
+import com.socrata.android.soql.clauses.Expression;
 import com.socrata.android.ui.list.SodaListActivity;
-
-import static com.socrata.android.soql.clauses.Expression.gt;
-import static com.socrata.android.soql.clauses.Expression.order;
 
 /**
  * A simple list activity displaying earthquakes results from the Soda API.
  * Showcases the use of the SodaListActivity component
  */
-public class ListViewExampleActivity extends SodaListActivity<EarthquakeView, Earthquake> {
+//public class ListViewExampleActivity extends SodaListActivity<EarthquakeView, Earthquake> {
+public class ListViewExampleActivity extends SodaListActivity<BuildingPermitView, BuildingPermit> {
 
     private Consumer consumer;
 
@@ -48,9 +47,14 @@ public class ListViewExampleActivity extends SodaListActivity<EarthquakeView, Ea
 
     @Override
     public Query getQuery() {
-        Query query = new Query("earthquakes", Earthquake.class);
-        query.addWhere(gt("magnitude", "2.0"));
-        query.addOrder(order("magnitude", OrderDirection.DESC));
+//        Query query = new Query("earthquakes", Earthquake.class);
+//        query.addWhere(gt("magnitude", "2.0"));
+//        query.addOrder(order("magnitude", OrderDirection.DESC));
+//        return query;
+
+        Query query = new Query("cthr-59vy", BuildingPermit.class);
+        Expression ex = Expression.eq("description", "'Vacant Lot'");
+        query.addWhere(ex);
         return query;
     }
 
