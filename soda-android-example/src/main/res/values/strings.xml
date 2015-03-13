@@ -18,4 +18,9 @@
     <string name="permit_number">Permit Number: %1$s</string>
     <string name="site_address">Address: %1$s</string>
     <string name="description">Description: %1$s</string>
+    <string name="google_play_services_should_be_installed">You should install Google Play Services for best results.</string>
+    <string name="gps_not_found_title">GPS not enabled</string>
+    <string name="gps_not_found_message">Would you like to enable GPS?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 </resources>
