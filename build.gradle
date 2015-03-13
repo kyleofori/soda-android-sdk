@@ -10,6 +10,15 @@
  * hello@47deg.com
  */
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.1.0'
+    }
+}
+
 allprojects {
     repositories {
         mavenCentral()
