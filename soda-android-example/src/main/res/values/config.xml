@@ -14,7 +14,8 @@
 <resources>
 
     <string name="google_key">AIzaSyA31JY34yqpPzwUmZkIj6BaS9jrxIfdyB8</string>
-    <string name="soda_domain">soda.demo.socrata.com</string>
+    <!--<string name="soda_domain">soda.demo.socrata.com</string>-->
+    <string name="soda_domain">data.detroitmi.gov</string>
     <string name="soda_token">YOUR_TOKEN_GOES_HERE</string>
 
 </resources>
