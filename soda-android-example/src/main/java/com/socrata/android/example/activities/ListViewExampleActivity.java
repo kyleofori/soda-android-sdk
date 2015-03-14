@@ -12,6 +12,7 @@
 
 package com.socrata.android.example.activities;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,9 +20,11 @@ import android.widget.AdapterView;
 import com.socrata.android.client.Consumer;
 import com.socrata.android.example.R;
 import com.socrata.android.example.model.BuildingPermit;
+import com.socrata.android.example.util.App;
 import com.socrata.android.example.views.BuildingPermitView;
 import com.socrata.android.soql.Query;
 import com.socrata.android.soql.clauses.Expression;
+import com.socrata.android.soql.datatypes.GeoBox;
 import com.socrata.android.ui.list.SodaListActivity;
 
 /**
@@ -30,6 +33,9 @@ import com.socrata.android.ui.list.SodaListActivity;
  */
 //public class ListViewExampleActivity extends SodaListActivity<EarthquakeView, Earthquake> {
 public class ListViewExampleActivity extends SodaListActivity<BuildingPermitView, BuildingPermit> {
+    
+//    public static final double FIFTY_METER_OFFSET = 0.00566;
+    public static final double FIFTY_METER_OFFSET = 0.1;
 
     private Consumer consumer;
 
@@ -52,8 +58,15 @@ public class ListViewExampleActivity extends SodaListActivity<BuildingPermitView
 //        query.addOrder(order("magnitude", OrderDirection.DESC));
 //        return query;
 
+        Location location = ((App)getApplication()).getLastLocation();
+        
+        double north = location.getLatitude() + FIFTY_METER_OFFSET;
+        double south = location.getLatitude() - FIFTY_METER_OFFSET;
+        double east = location.getLongitude() - FIFTY_METER_OFFSET;
+        double west = location.getLongitude() + FIFTY_METER_OFFSET;
+        
         Query query = new Query("cthr-59vy", BuildingPermit.class);
-        Expression ex = Expression.eq("description", "'Vacant Lot'");
+        Expression ex = Expression.withinBox("site_location", new GeoBox(north, east, south, west));
         query.addWhere(ex);
         return query;
     }
