@@ -37,4 +37,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/building_permit_site_address"/>
 
+    <TextView
+        android:id="@+id/building_permit_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/building_permit_description"/>
+
 </RelativeLayout>
