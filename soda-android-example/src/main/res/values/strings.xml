@@ -23,4 +23,7 @@
     <string name="gps_not_found_message">Would you like to enable GPS?</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="btn_use_current_loc">Use current Location</string>
+    <string name="btn_enter_loc">Enter location</string>
+    <string name="distance">Distance: %1$s meters</string>
 </resources>
