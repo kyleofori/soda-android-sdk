@@ -14,6 +14,9 @@ package com.socrata.android.example.model;
 
 import com.socrata.android.client.SodaEntity;
 import com.socrata.android.client.SodaField;
+import com.socrata.android.soql.datatypes.Location;
+
+import java.util.Date;
 
 /**
  * Model entity representing a remote record on the Soda sample datasets
@@ -29,13 +32,13 @@ public class BuildingPermit {
     private String permitNumber;
 
     @SodaField("permit_applied")
-    private String permitApplied;
+    private Date permitApplied;
 
     @SodaField("permit_issued")
-    private String permitIssued;
+    private Date permitIssued;
 
     @SodaField("permit_expires")
-    private String permitExpires;
+    private Date permitExpires;
 
     @SodaField("site_address")
     private String siteAddress;
@@ -62,22 +65,22 @@ public class BuildingPermit {
     private String legalUse;
 
     @SodaField("estimated_cost")
-    private String estimatedCost;
+    private Double estimatedCost;
 
     @SodaField("parcel_size")
-    private String parcelSize;
+    private Integer parcelSize;
 
     @SodaField("parcel_cluster_sector")
-    private String parcelClusterSector;
+    private Integer parcelClusterSector;
 
     @SodaField("stories")
-    private String stories;
+    private Integer stories;
 
     @SodaField("parcel_floor_area")
-    private String parcelFloorArea;
+    private Integer parcelFloorArea;
 
     @SodaField("parcel_ground_area")
-    private String parcelGroundArea;
+    private Integer parcelGroundArea;
 
     @SodaField("prc_aka_address")
     private String prcAkaAddress;
@@ -122,16 +125,16 @@ public class BuildingPermit {
     private String csfCreatedBy;
 
     @SodaField("seq_no")
-    private String seqNo;
+    private Integer seqNo;
 
     @SodaField("pcf_amt_pd")
-    private String pcfAmtPd;
+    private Double pcfAmtPd;
 
     @SodaField("pcf_amt_due")
-    private String pcfAmtDue;
+    private Double pcfAmtDue;
 
     @SodaField("pcf_updated")
-    private String pcfUpdated;
+    private Date pcfUpdated;
 
     @SodaField("owner_last_name")
     private String ownerLastName;
@@ -179,16 +182,16 @@ public class BuildingPermit {
     private String conditionForApproval;
 
     @SodaField("site_location")
-    private String siteLocation;
+    private Location siteLocation;
 
     @SodaField("owner_location")
-    private String ownerLocation;
+    private Location ownerLocation;
 
     @SodaField("contractor_location")
-    private String contractorLocation;
+    private Location contractorLocation;
 
     @SodaField("geom")
-    private String geom;
+    private Location geom;
 
     public String getPermitNumber() {
         return permitNumber;
@@ -198,36 +201,44 @@ public class BuildingPermit {
         this.permitNumber = permitNumber;
     }
 
-    public String getPermitApplied() {
-        return permitApplied;
-    }
-
-    public void setPermitApplied(String permitApplied) {
-        this.permitApplied = permitApplied;
-    }
-
-    public String getPermitIssued() {
-        return permitIssued;
-    }
-
-    public void setPermitIssued(String permitIssued) {
-        this.permitIssued = permitIssued;
-    }
-
-    public String getPermitExpires() {
-        return permitExpires;
-    }
-
-    public void setPermitExpires(String permitExpires) {
-        this.permitExpires = permitExpires;
-    }
-
     public String getSiteAddress() {
         return siteAddress;
     }
 
     public void setSiteAddress(String siteAddress) {
         this.siteAddress = siteAddress;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getPermitApplied() {
+        return permitApplied;
+    }
+
+    public void setPermitApplied(Date permitApplied) {
+        this.permitApplied = permitApplied;
+    }
+
+    public Date getPermitIssued() {
+        return permitIssued;
+    }
+
+    public void setPermitIssued(Date permitIssued) {
+        this.permitIssued = permitIssued;
+    }
+
+    public Date getPermitExpires() {
+        return permitExpires;
+    }
+
+    public void setPermitExpires(Date permitExpires) {
+        this.permitExpires = permitExpires;
     }
 
     public String getBetween1() {
@@ -286,51 +297,51 @@ public class BuildingPermit {
         this.legalUse = legalUse;
     }
 
-    public String getEstimatedCost() {
+    public Double getEstimatedCost() {
         return estimatedCost;
     }
 
-    public void setEstimatedCost(String estimatedCost) {
+    public void setEstimatedCost(Double estimatedCost) {
         this.estimatedCost = estimatedCost;
     }
 
-    public String getParcelSize() {
+    public Integer getParcelSize() {
         return parcelSize;
     }
 
-    public void setParcelSize(String parcelSize) {
+    public void setParcelSize(Integer parcelSize) {
         this.parcelSize = parcelSize;
     }
 
-    public String getParcelClusterSector() {
+    public Integer getParcelClusterSector() {
         return parcelClusterSector;
     }
 
-    public void setParcelClusterSector(String parcelClusterSector) {
+    public void setParcelClusterSector(Integer parcelClusterSector) {
         this.parcelClusterSector = parcelClusterSector;
     }
 
-    public String getStories() {
+    public Integer getStories() {
         return stories;
     }
 
-    public void setStories(String stories) {
+    public void setStories(Integer stories) {
         this.stories = stories;
     }
 
-    public String getParcelFloorArea() {
+    public Integer getParcelFloorArea() {
         return parcelFloorArea;
     }
 
-    public void setParcelFloorArea(String parcelFloorArea) {
+    public void setParcelFloorArea(Integer parcelFloorArea) {
         this.parcelFloorArea = parcelFloorArea;
     }
 
-    public String getParcelGroundArea() {
+    public Integer getParcelGroundArea() {
         return parcelGroundArea;
     }
 
-    public void setParcelGroundArea(String parcelGroundArea) {
+    public void setParcelGroundArea(Integer parcelGroundArea) {
         this.parcelGroundArea = parcelGroundArea;
     }
 
@@ -380,14 +391,6 @@ public class BuildingPermit {
 
     public void setResidential(String residential) {
         this.residential = residential;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getBldTypeConstCod() {
@@ -446,35 +449,35 @@ public class BuildingPermit {
         this.csfCreatedBy = csfCreatedBy;
     }
 
-    public String getSeqNo() {
+    public Integer getSeqNo() {
         return seqNo;
     }
 
-    public void setSeqNo(String seqNo) {
+    public void setSeqNo(Integer seqNo) {
         this.seqNo = seqNo;
     }
 
-    public String getPcfAmtPd() {
+    public Double getPcfAmtPd() {
         return pcfAmtPd;
     }
 
-    public void setPcfAmtPd(String pcfAmtPd) {
+    public void setPcfAmtPd(Double pcfAmtPd) {
         this.pcfAmtPd = pcfAmtPd;
     }
 
-    public String getPcfAmtDue() {
+    public Double getPcfAmtDue() {
         return pcfAmtDue;
     }
 
-    public void setPcfAmtDue(String pcfAmtDue) {
+    public void setPcfAmtDue(Double pcfAmtDue) {
         this.pcfAmtDue = pcfAmtDue;
     }
 
-    public String getPcfUpdated() {
+    public Date getPcfUpdated() {
         return pcfUpdated;
     }
 
-    public void setPcfUpdated(String pcfUpdated) {
+    public void setPcfUpdated(Date pcfUpdated) {
         this.pcfUpdated = pcfUpdated;
     }
 
@@ -598,35 +601,35 @@ public class BuildingPermit {
         this.conditionForApproval = conditionForApproval;
     }
 
-    public String getSiteLocation() {
+    public Location getSiteLocation() {
         return siteLocation;
     }
 
-    public void setSiteLocation(String siteLocation) {
+    public void setSiteLocation(Location siteLocation) {
         this.siteLocation = siteLocation;
     }
 
-    public String getOwnerLocation() {
+    public Location getOwnerLocation() {
         return ownerLocation;
     }
 
-    public void setOwnerLocation(String ownerLocation) {
+    public void setOwnerLocation(Location ownerLocation) {
         this.ownerLocation = ownerLocation;
     }
 
-    public String getContractorLocation() {
+    public Location getContractorLocation() {
         return contractorLocation;
     }
 
-    public void setContractorLocation(String contractorLocation) {
+    public void setContractorLocation(Location contractorLocation) {
         this.contractorLocation = contractorLocation;
     }
 
-    public String getGeom() {
+    public Location getGeom() {
         return geom;
     }
 
-    public void setGeom(String geom) {
+    public void setGeom(Location geom) {
         this.geom = geom;
     }
 }
