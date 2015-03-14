@@ -1,20 +1,43 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:background="@android:color/holo_orange_dark"
-             tools:context=".SplashActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_orange_dark"
+                android:gravity="center"
+                android:padding="50dp"
+                tools:context=".SplashActivity">
 
-    <TextView android:id="@+id/splash_content"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:textColor="#fff"
-              android:textStyle="normal"
-              android:fontFamily="sans-serif-light"
-              android:textSize="50sp"
-              android:layout_gravity="center"
-              android:text="splash" />
+    <TextView
+        android:id="@+id/splash_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="sans-serif-light"
+        android:text="splash"
+        android:textColor="#fff"
+        android:textSize="50sp"
+        android:textStyle="normal"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:layout_centerHorizontal="true"/>
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btnUseCurrentLoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/splash_content"
+        android:text="@string/btn_use_current_loc"
+        />
+
+    <Button
+        android:id="@+id/btnEnterLoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnUseCurrentLoc"
+        android:text="@string/btn_enter_loc"
+        />
+
+
+</RelativeLayout>
 
 
