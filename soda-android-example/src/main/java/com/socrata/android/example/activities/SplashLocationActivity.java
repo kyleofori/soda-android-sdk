@@ -2,40 +2,96 @@ package com.socrata.android.example.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.socrata.android.example.R;
+import com.socrata.android.example.util.App;
+import com.socrata.android.example.util.LocationUtil;
 
-public class SplashLocationActivity extends Activity {
+import java.util.Date;
 
-    private static final int SPLASH_DELAY = 2000;
+public class SplashLocationActivity extends Activity implements LocationUtil.DetroitLocationListener {
+
+    public static final String TAG = SplashLocationActivity.class.getName();
+
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 2323;
+
+    LocationUtil locationUtil;
+    
+    Location currentLocation;
     
     private AlertDialog gpsAlertDialog;
+    ProgressDialog progressDialog;
+    
+    Button btnUseCurrentLoc;
+    Button btnEnterLoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         checkForPlayServices();
-    }
+        locationUtil = new LocationUtil(this);
+        btnUseCurrentLoc = (Button)findViewById(R.id.btnUseCurrentLoc);
+        btnEnterLoc = (Button)findViewById(R.id.btnEnterLoc);
+        
+        btnUseCurrentLoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (currentLocation == null) {
+                    checkLocationServices();
 
+                    showProgress(R.id.progress_getting_location);
+                    locationUtil.setDetroitLocationListener(SplashLocationActivity.this);
+                    locationUtil.connect();
+                }
+            }
+        });
+
+        btnEnterLoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToListViewExampleActivity();
+            }
+        });
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        checkLocationServices();
+    }
+
+    @Override
+    public void gotLocation(final Location newLocation) {
+        Log.d(TAG, "in gotLocation: LOCATION RETRIEVED:" + newLocation);
+        hideProgress();
+        
+        App app = (App)getApplication();
+        app.setLastLocation(newLocation);
+        app.setLastLocationUpdateTime(new Date().getTime());
+        goToListViewExampleActivity();
     }
     
+    private void goToListViewExampleActivity() {
+        Intent i = new Intent(SplashLocationActivity.this, ListViewExampleActivity.class);
+        startActivity(i);
+        finish(); 
+    }
+
+
     public void checkForPlayServices() {
         int googlePlayServicesAvailable = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
         if (googlePlayServicesAvailable != ConnectionResult.SUCCESS) {
@@ -71,16 +127,7 @@ public class SplashLocationActivity extends Activity {
     }
 
     protected void checkLocationServices() {
-        if (isLocationEnabled()) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent i = new Intent(SplashLocationActivity.this, ListViewExampleActivity.class);
-                    startActivity(i);
-                    finish();
-                }
-            }, SPLASH_DELAY);
-        } else {
+        if (!isLocationEnabled()) {
             showLocationServicesDialog();
         }
     }
@@ -120,4 +167,22 @@ public class SplashLocationActivity extends Activity {
         gpsAlertDialog = builder.create();
         gpsAlertDialog.show();
     }
+
+    public void showProgress(int messageId) {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this);
+        }
+        String message = getResources().getString(messageId);
+        progressDialog.setMessage(message);
+        progressDialog.show();
+    }
+
+    public void hideProgress() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
+    }
+    
+    
 }
