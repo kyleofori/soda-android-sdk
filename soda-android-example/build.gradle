@@ -1,14 +1,4 @@
-/*
- * SODA Android SDK - Socrata, Inc
- *
- * Copyright (C) 2013 Socrata, Inc
- * All rights reserved.
- *
- * Developed for Socrata, Inc by:
- * 47 Degrees, LLC
- * http://47deg.com
- * hello@47deg.com
- */
+
 
 buildscript {
     repositories {
@@ -26,6 +16,7 @@ apply plugin: 'android'
 
 dependencies {
     compile project(':soda-android-sdk')
+    compile 'com.google.android.gms:play-services:6.5.87'
 }
 
 android {
@@ -33,7 +24,7 @@ android {
     buildToolsVersion "19.1"
 
     defaultConfig {
-        minSdkVersion 8
+        minSdkVersion 9
         targetSdkVersion 16
     }
 }
